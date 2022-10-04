@@ -1,0 +1,14 @@
+alias: Cookie Reset Fed Helper
+description: ""
+trigger:
+  - platform: time
+    at: "16:00"
+  - platform: time
+    at: "04:00"
+condition: []
+action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.cookie_fed
+mode: single
