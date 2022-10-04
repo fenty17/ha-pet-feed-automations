@@ -1,0 +1,22 @@
+alias: Cookie Notify for Food
+description: ""
+trigger:
+  - platform: time
+    at: "08:30"
+  - platform: time
+    at: "21:00"
+condition:
+  - condition: state
+    entity_id: input_boolean.cookie_fed
+    state: "off"
+action:
+  - service: notify.all_devices
+    data:
+      title: Alert!
+      message: "Cookie hasn’t been fed. Get it sorted. "
+      data:
+        tag: cookie_food
+        push:
+          interruption-level: time-sensitive
+        image: /local/cookie.jpg
+mode: single
