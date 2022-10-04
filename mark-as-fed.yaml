@@ -1,0 +1,22 @@
+alias: Cookie Mark as Fed
+description: ""
+trigger:
+  - platform: state
+    entity_id: binary_sensor.dog_food_bucket
+    to: "on"
+    enabled: true
+  - platform: numeric_state
+    entity_id: sensor.dog_food_bucket_angle_y
+    above: "40"
+condition: []
+action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.cookie_fed
+  - service: notify.all_devices
+    data:
+      message: clear_notification
+      data:
+        tag: cookie_food
+mode: single
