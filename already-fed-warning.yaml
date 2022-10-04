@@ -1,0 +1,20 @@
+alias: Cookie Already Fed Warning
+description: ""
+trigger:
+  - platform: state
+    entity_id: binary_sensor.dog_food_bucket
+    to: "on"
+condition:
+  - condition: state
+    entity_id: input_boolean.cookie_fed
+    state: "on"
+action:
+  - service: script.sonos_tts_alexa_script_entity
+    data:
+      sonos_entity: kitchen_sonos
+      volume: 0.24
+      delay: "00:00:00"
+      message: >-
+        Hold up. Cookie has already been fed! Dont feed him again otherwise he
+        will get fat.
+mode: single
